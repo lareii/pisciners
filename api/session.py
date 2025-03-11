@@ -34,7 +34,7 @@ class Session:
     def _is_token_expired(self):
         return time.time() >= self._token_expiry
 
-    def make_request(self, endpoint, params=None, retries=5, backoff_factor=1.0):
+    def make_request(self, endpoint, params=None, retries=50, sleep_time=10):
         if self._is_token_expired():
             log(0, "Access token is expired. Getting new access token...")
             self._get_access_token()
@@ -50,7 +50,6 @@ class Session:
                         f"API request failed with status code {response.status_code}"
                     )
             except Exception as err:
-                sleep_time = backoff_factor * (2**attempt)
                 log(
                     1,
                     f"API request failed with status code {response.status_code}. Waiting for {sleep_time} seconds. Attempt: {attempt}/{retries}",
