@@ -58,6 +58,6 @@ class Session:
 
         raise Exception("API request failed after multiple attempts.")
 
-    def __del__(self):
-        log(0, "Session closing...")
-        self._session.close()
+    # def __del__(self):
+    #     log(0, "Session closing...")
+    #     self._session.close()

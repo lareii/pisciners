@@ -29,6 +29,6 @@ class Database:
         q = Query()
         return self.db.table(table).remove(q.fragment(query))
 
-    def __del__(self):
-        log(0, "Database closing...")
-        self.db.close()
+    # def __del__(self):
+    #     log(0, "Database closing...")
+    #     self.db.close()
