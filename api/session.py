@@ -8,8 +8,6 @@ import time
 class Session:
     def __init__(self):
         self._session = requests.Session()
-        self._token_expiry = 0
-
         log(0, "Getting access token from API...")
         self._get_access_token()
 
@@ -25,39 +23,40 @@ class Session:
 
         if response.status_code != 200:
             raise Exception("API authentication failed")
+
         data = response.json()
-        self._token_expiry = time.time() + data["expires_in"] - 60
         self._session.headers.update(
             {"Authorization": f"Bearer {data['access_token']}"}
         )
 
-    def _is_token_expired(self):
-        return time.time() >= self._token_expiry
+    def _refresh_token(self, response):
+        if response.status_code == 401:
+            log(0, "Access token expired. Refreshing...")
+            self._get_access_token()
+            return True
+        return False
 
     def make_request(self, endpoint, params=None, retries=50, sleep_time=10):
-        if self._is_token_expired():
-            log(0, "Access token is expired. Getting new access token...")
-            self._get_access_token()
-
-        attempt = 1
-        while attempt < retries + 1:
+        for attempt in range(retries):
             try:
                 response = self._session.get(endpoint, params=params)
+
+                if self._refresh_token(response):
+                    continue
                 if response.status_code == 200:
                     return response.json()
-                else:
-                    raise Exception(
-                        f"API request failed with status code {response.status_code}"
-                    )
+                log(
+                    2,
+                    f"Request failed (status {response.status_code}). Retrying {attempt + 1}/{retries}...",
+                )
             except Exception as err:
                 log(
-                    1,
-                    f"API request failed with status code {response.status_code}. Waiting for {sleep_time} seconds. Attempt: {attempt}/{retries}",
+                    2,
+                    f"Request failed due to {err}. Retrying {attempt + 1}/{retries}...",
                 )
-                attempt += 1
-                time.sleep(sleep_time)
+            time.sleep(sleep_time)
 
-        raise Exception(f"API request failed after {retries} attempts")
+        raise Exception("API request failed after multiple attempts.")
 
     def __del__(self):
         log(0, "Session closing...")
