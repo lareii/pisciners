@@ -1,6 +1,7 @@
 from api import APIClient
 from database import Database
 from utils.log import log
+from utils.email import send_emails
 
 import os
 import time
@@ -47,6 +48,7 @@ def monitor_projects(pisciners, monitor_delay, project_delay):
                     and project_slug not in existing_projects
                 ):
                     log(0, f"{login} waiting evaluation for {project_slug} project.")
+                    send_emails(login, project_slug)
                     new_projects.add(project_slug)
 
             updated_projects = existing_projects | new_projects
