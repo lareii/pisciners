@@ -8,12 +8,13 @@ import time
 class Session:
     def __init__(self):
         self._session = requests.Session()
+        self.BASE_URL = "https://api.intra.42.fr"
         log(0, "Getting access token from API...")
         self._get_access_token()
 
     def _get_access_token(self):
         response = self._session.post(
-            f"{BASE_URL}/oauth/token",
+            f"{self.BASE_URL}/oauth/token",
             data={
                 "grant_type": "client_credentials",
                 "client_id": CLIENT_ID,
