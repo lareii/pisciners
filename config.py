@@ -1,10 +1,8 @@
 BASE_URL = "https://api.intra.42.fr"
-CLIENT_ID = "u-s4t2ud-e6de65e1bff2345c47b94638e1fc69df43283bb4667d1c24708055c63274edc9"
-CLIENT_SECRET = (
-    "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"
-)
+CLIENT_ID = "" # u-s4t2ud-2629...
+CLIENT_SECRET = "" # s-s4t2ud-e9be...
 
-CAMPUS_ID = 50
-CURSUS_ID = 9
-POOL_MONTH = "march"
-POOL_YEAR = "2025"
+CAMPUS_ID = 50 # kocaeli
+CURSUS_ID = 9 # same with 21
+POOL_MONTH = "" # march
+POOL_YEAR = "" # 2025
