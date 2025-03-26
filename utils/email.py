@@ -4,9 +4,9 @@ from email.mime.text import MIMEText
 import smtplib
 
 
-def send_emails(pisciner, project):
+def send_emails(pisciner, project_slug):
     msg = MIMEText(
-        f"""<html> <body><img src="{pisciner['image']['link']}" width="300" height="225"><br><small>{pisciner['login']} ({pisciner['usual_full_name']})</small><p><b>{pisciner['login']}</b>, <b>{project['project']['slug']}</b> projesini <b>{pisciner['location']}</b> lokasyonunda gönderdi.</p></body></html>""",
+        f"""<html> <body><img src="{pisciner['image']['link']}" width="300" height="225"><br><small>{pisciner['login']} ({pisciner['usual_full_name']})</small><p><b>{pisciner['login']}</b>, <b>{project_slug}</b> projesini <b>{pisciner['location']}</b> lokasyonunda gönderdi.</p></body></html>""",
         "html",
     )
     msg["Subject"] = "proje veren var tutorum"
