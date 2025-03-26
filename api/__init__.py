@@ -12,7 +12,7 @@ class APIClient(Session):
         pisciners = []
         page = 1
         while True:
-            users = self._session.make_request(
+            users = self.make_request(
                 f"{self.BASE_URL}/v2/campus/{CAMPUS_ID}/users",
                 {
                     "cursus_id": CURSUS_ID,
@@ -32,6 +32,6 @@ class APIClient(Session):
         return pisciners
 
     def get_pisciner_projects(self, pisciner_login):
-        return self._session.make_request(
+        return self.make_request(
             f"{self.BASE_URL}/v2/users/{pisciner_login}/projects_users"
         )
