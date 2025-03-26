@@ -2,7 +2,6 @@ PY			= python3
 PIP			= pip3
 VENV_PATH	= venv
 REQS		= requirements.txt
-DB_PATH		= database.db
 
 all: $(VENV_PATH)
 	$(VENV_PATH)/bin/$(PY) main.py
@@ -16,7 +15,6 @@ clean:
 
 fclean: clean
 	rm -rf $(VENV_PATH)
-	rm -rf $(DB_PATH)
 
 re: fclean all
 
