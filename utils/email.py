@@ -1,9 +1,10 @@
 from config import (
+    DEBUG,
     SENDER_ADDR,
     SENDER_PASS,
     RECEIVER_ADDRS,
     SMTP_SERVER,
-    SMTP_PORT
+    SMTP_PORT,
 )
 
 from email.mime.text import MIMEText
@@ -11,6 +12,9 @@ import smtplib
 
 
 def send_emails(pisciner, project_slug):
+    if DEBUG:
+        return
+
     msg = MIMEText(
         f"""<html> <body><img src="{pisciner['image']['link']}" width="300" height="225"><br><small>{pisciner['login']} ({pisciner['usual_full_name']})</small><p><b>{pisciner['login']}</b>, <b>{project_slug}</b> projesini <b>{pisciner['location']}</b> lokasyonunda gönderdi.</p></body></html>""",
         "html",

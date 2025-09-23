@@ -3,6 +3,8 @@
 CLIENT_ID = "" # u-s4t2ud-2629...
 CLIENT_SECRET = "" # s-s4t2ud-e9be...
 
+DEBUG = True # set to False in production
+
 # CURSUS_ID is a strange variable 
 # cuz both pisciners and learners appear within the same cursus.
 # idk if this is the same across all campuses
