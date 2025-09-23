@@ -17,7 +17,7 @@ POOL_YEAR = "2025"
 # look into "App Passwords" in google account settings
 # https://myaccount.google.com/apppasswords
 SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
+SMTP_PORT = 465
 SENDER_ADDR = "" # example@gmail.com
 SENDER_PASS = "" # xxxx xxxx xxxx xxxx
 RECEIVER_ADDRS = [
