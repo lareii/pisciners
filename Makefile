@@ -1,21 +1,12 @@
-PY			= python3
-PIP			= pip3
-VENV_PATH	= venv
-REQS		= requirements.txt
+run:
+	docker compose up -d
 
-all: $(VENV_PATH)
-	$(VENV_PATH)/bin/$(PY) main.py
+stop:
+	docker compose down
 
-$(VENV_PATH): $(REQS)
-	$(PY) -m venv $(VENV_PATH)
-	$(VENV_PATH)/bin/$(PIP) install -r $(REQS)
+clean: stop
 
-clean:
-	rm -rf __pycache__ **/__pycache__
+re: stop
+	docker compose up --build -d
 
-fclean: clean
-	rm -rf $(VENV_PATH)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY: run stop clean re
