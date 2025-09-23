@@ -1,0 +1,26 @@
+# you can retrieve these values by creating an application
+# https://profile.intra.42.fr/oauth/applications/
+CLIENT_ID = "" # u-s4t2ud-2629...
+CLIENT_SECRET = "" # s-s4t2ud-e9be...
+
+# CURSUS_ID is a strange variable 
+# cuz both pisciners and learners appear within the same cursus.
+# idk if this is the same across all campuses
+# but it is like this in Kocaeli. (hey bocals!)
+CAMPUS_ID = 50 # kocaeli
+CURSUS_ID = 9 # kocaeli (same with 21, idk why??)
+POOL_MONTH = "october"
+POOL_YEAR = "2025"
+
+# email configuration for google's SMTP server
+# i recommend using gmail for this cuz i have only tested with it lol
+# look into "App Passwords" in google account settings
+# https://myaccount.google.com/apppasswords
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
+SENDER_ADDR = "" # example@gmail.com
+SENDER_PASS = "" # xxxx xxxx xxxx xxxx
+RECEIVER_ADDRS = [
+    "", # example@gmail.com
+	"", # john.doe@example.com
+]
