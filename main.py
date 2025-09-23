@@ -66,7 +66,7 @@ def monitor_projects(pisciners, monitor_delay, project_delay):
         log(0, f"Waiting for next check in {monitor_delay} seconds.")
         time.sleep(monitor_delay)
 
-
 if __name__ == "__main__":
     pisciners = get_pisciners()
-    monitor_projects(pisciners, 60 * 10, 1)
+    # send_emails(pisciners[0], "test-project")
+    monitor_projects(pisciners, 60 * 10, 1) # TODO: adjust delays according to rate limits
