@@ -16,10 +16,10 @@ def send_emails(pisciner, project_slug):
         return
 
     msg = MIMEText(
-        f"""<html> <body><img src="{pisciner['image']['link']}" width="300" height="225"><br><small>{pisciner['login']} ({pisciner['usual_full_name']})</small><p><b>{pisciner['login']}</b>, <b>{project_slug}</b> projesini <b>{pisciner['location']}</b> lokasyonunda gönderdi.</p></body></html>""",
+        f"""<html> <body><img src="{pisciner['image']['link']}" width="300" height="225"><br><small>{pisciner['login']} ({pisciner['usual_full_name']})</small><p><b>{pisciner['login']}</b>, <b>{project_slug}</b> projesi için değerlendirme bekliyor.</p></body></html>""",
         "html",
     )
-    msg["Subject"] = f"{pisciner['login']}, {project_slug} projesini gönderdi!"
+    msg["Subject"] = f"Tutor'um, {pisciner['login']} değerlendirme bekliyor."
     msg["From"] = f"pisciners-bot <{SENDER_ADDR}>"
     msg["To"] = ", ".join(RECEIVER_ADDRS)
 
